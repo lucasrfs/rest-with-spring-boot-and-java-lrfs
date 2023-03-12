@@ -1,0 +1,9 @@
+[Desktop entry]
+Name=Sprint Tool Suite 4
+Comment=Sprint Tool Suite 4
+Exec=/otp/spring-tool-suite-4-4.17.2.RELEASE-e4.26.0-linux.gtk.x86_64/sts-4.17.2.RELEASE/SpringToolSuite4
+Icon=/otp/spring-tool-suite-4-4.17.2.RELEASE-e4.26.0-linux.gtk.x86_64/sts-4.17.2.RELEASE/icon.xpm
+Terminal=false
+Type=Application
+Categories=Development;IDE;Java
+StartuptWMClass=SpringToolSuite4
