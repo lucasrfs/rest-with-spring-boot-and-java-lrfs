@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lrfs.exceptions.UnsupportedMathOperationException;
+import br.com.lrfs.utils.Operations;
+import br.com.lrfs.utils.Utils;
 
 @RestController
 
@@ -24,31 +26,64 @@ public class MathController {
 			@PathVariable(value="numberTwo") String numberTwo
 			) throws Exception{
 		
-		String strNumberOne = numberOne.replaceAll(",",".");
-		String strNumberTwo = numberTwo.replaceAll(",",".");
+		return Operations.sum(numberOne, numberTwo);
+				
+	}
+	
+	@RequestMapping(value = "/subtract/{numberOne}/{numberTwo}",
+			method = RequestMethod.GET)
+	public Double subtract(
+			@PathVariable(value="numberOne") String numberOne,
+			@PathVariable(value="numberTwo") String numberTwo
+			) throws Exception{
 		
-		if(!isNumeric(strNumberOne) || !isNumeric(strNumberTwo))
-		{
-			throw new UnsupportedMathOperationException("Número inválido");
-		}
-		else
-		{
-			return Double.parseDouble(strNumberOne) + Double.parseDouble(strNumberTwo);
-		}
+		return Operations.subtract(numberOne, numberTwo);
+		
+	}
+	
+	@RequestMapping(value = "/divide/{numberOne}/{numberTwo}",
+			method = RequestMethod.GET)
+	public Double divide(
+			@PathVariable(value="numberOne") String numberOne,
+			@PathVariable(value="numberTwo") String numberTwo
+			) throws Exception{
+		
+		return Operations.divide(numberOne, numberTwo);
+		
+	}
+	
+	@RequestMapping(value = "/multiply/{numberOne}/{numberTwo}",
+			method = RequestMethod.GET)
+	public Double multiply(
+			@PathVariable(value="numberOne") String numberOne,
+			@PathVariable(value="numberTwo") String numberTwo
+			) throws Exception{
+		
+		return Operations.multiply(numberOne, numberTwo);
+		
+	}
+	
+	@RequestMapping(value = "/mean/{numberOne}/{numberTwo}",
+			method = RequestMethod.GET)
+	public Double mean(
+			@PathVariable(value="numberOne") String numberOne,
+			@PathVariable(value="numberTwo") String numberTwo
+			) throws Exception{
+		
+		return Operations.mean(numberOne, numberTwo);
+		
+	}
+	
+	@RequestMapping(value = "/squareRoot/{numberOne}",
+			method = RequestMethod.GET)
+	public Double squareRoot(
+			@PathVariable(value="numberOne") String numberOne
+			) throws Exception{
+		
+		return Operations.squareRoot(numberOne);
 		
 	}
 
-	private boolean isNumeric(String numberOne) {
-		// TODO Auto-generated method stub
-		try
-		{
-			Double.parseDouble(numberOne);
-			return true;
-		}
-		catch(NumberFormatException e)
-		{
-			return false;
-		}
-	}
+	
 
 }
