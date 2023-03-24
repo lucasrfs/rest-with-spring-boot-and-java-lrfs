@@ -1,89 +1,64 @@
 package br.com.lrfs;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.lrfs.exceptions.UnsupportedMathOperationException;
-import br.com.lrfs.utils.Operations;
-import br.com.lrfs.utils.Utils;
+import br.com.lrfs.model.Person;
+import br.com.lrfs.services.PersonServices;
 
 @RestController
+@RequestMapping("/person")
 
-
-public class MathController {
+public class PersonController {
 	
-	private static final String template = "Hello, %s!";
-	public final AtomicLong counter = new AtomicLong();
+	@Autowired
+	private PersonServices service;
 	
-	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}",
-			method = RequestMethod.GET)
-	public Double sum(
-			@PathVariable(value="numberOne") String numberOne,
-			@PathVariable(value="numberTwo") String numberTwo
+	@GetMapping(value = "/{id}",
+				produces= MediaType.APPLICATION_JSON_VALUE)
+	public Optional<Person> findByid(
+			@PathVariable(value="id") Long id
 			) throws Exception{
 		
-		return Operations.sum(numberOne, numberTwo);
-				
+		return service.findById(id);				 
 	}
 	
-	@RequestMapping(value = "/subtract/{numberOne}/{numberTwo}",
-			method = RequestMethod.GET)
-	public Double subtract(
-			@PathVariable(value="numberOne") String numberOne,
-			@PathVariable(value="numberTwo") String numberTwo
-			) throws Exception{
-		
-		return Operations.subtract(numberOne, numberTwo);
-		
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Person> findAll() throws Exception {
+		return service.findAll();
 	}
 	
-	@RequestMapping(value = "/divide/{numberOne}/{numberTwo}",
-			method = RequestMethod.GET)
-	public Double divide(
-			@PathVariable(value="numberOne") String numberOne,
-			@PathVariable(value="numberTwo") String numberTwo
-			) throws Exception{
+	@PostMapping(produces=MediaType.APPLICATION_JSON_VALUE,
+				consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Person create(@RequestBody Person person)  {
 		
-		return Operations.divide(numberOne, numberTwo);
-		
+		return service.create(person);
 	}
 	
-	@RequestMapping(value = "/multiply/{numberOne}/{numberTwo}",
-			method = RequestMethod.GET)
-	public Double multiply(
-			@PathVariable(value="numberOne") String numberOne,
-			@PathVariable(value="numberTwo") String numberTwo
-			) throws Exception{
-		
-		return Operations.multiply(numberOne, numberTwo);
-		
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+	public Person update(@RequestBody Person person) {
+		return service.update(person);
 	}
 	
-	@RequestMapping(value = "/mean/{numberOne}/{numberTwo}",
-			method = RequestMethod.GET)
-	public Double mean(
-			@PathVariable(value="numberOne") String numberOne,
-			@PathVariable(value="numberTwo") String numberTwo
-			) throws Exception{
-		
-		return Operations.mean(numberOne, numberTwo);
-		
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/squareRoot/{numberOne}",
-			method = RequestMethod.GET)
-	public Double squareRoot(
-			@PathVariable(value="numberOne") String numberOne
-			) throws Exception{
-		
-		return Operations.squareRoot(numberOne);
-		
-	}
-
 	
-
+	
 }
