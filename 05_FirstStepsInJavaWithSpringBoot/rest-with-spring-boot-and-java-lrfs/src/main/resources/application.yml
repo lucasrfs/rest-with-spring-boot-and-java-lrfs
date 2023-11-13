@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.68.118:3306/rest_with_spring_boot_lrfs?useTimeZone=true&serverTimeZone=UTC
+    url: jdbc:mysql://192.168.68.121:3306/rest_with_spring_boot_lrfs?useTimeZone=true&serverTimeZone=UTC
     username: root
     password: naoconto
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
