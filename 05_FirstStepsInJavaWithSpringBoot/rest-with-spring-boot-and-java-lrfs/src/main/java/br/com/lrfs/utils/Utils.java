@@ -5,7 +5,7 @@ import br.com.lrfs.exceptions.ResourceNotFoundException;
 public class Utils {
 	
 	public static boolean isNumeric(String numberOne) {
-		// TODO Auto-generated method stub
+		
 		try
 		{
 			Double.parseDouble(numberOne);

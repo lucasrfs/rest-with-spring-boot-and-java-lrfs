@@ -85,12 +85,12 @@ public class Person implements Serializable {
 	}
 
 	public void setId(long id) {
-		// TODO Auto-generated method stub
+		
 		this.id = id;
 	}
 
 	public Long getId() {
-		// TODO Auto-generated method stub
+		
 		return this.id;
 	}
 	

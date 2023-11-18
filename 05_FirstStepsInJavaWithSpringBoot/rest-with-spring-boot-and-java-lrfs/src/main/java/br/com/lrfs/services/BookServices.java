@@ -1,8 +1,6 @@
 package br.com.lrfs.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ public class BookServices {
 				try {
 					p.add(linkTo(methodOn(PersonController.class).findByid(p.getKey())).withSelfRel());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			});

@@ -1,13 +1,10 @@
 server:
-  port: 8080
+  port: 8888
 cors:
   originPatterns: "uol.com.br"
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.68.121:3306/rest_with_spring_boot_lrfs?useTimeZone=true&serverTimeZone=UTC
-    username: root
-    password: naoconto
+    driver-class-name: com.mysql.cj.jdbc.Driver    
   jpa:
     hibernate:
       ddl-auto: update

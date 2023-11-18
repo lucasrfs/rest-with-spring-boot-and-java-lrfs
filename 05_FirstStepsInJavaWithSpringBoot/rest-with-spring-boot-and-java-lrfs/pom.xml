@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -18,6 +19,12 @@
 		<springdoc.version>2.0.2</springdoc.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>1.15.3</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -94,7 +101,7 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
-			<version>3.1.0</version><!--$NO-MVN-MAN-VER$-->
+			<version>4.4.0</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
@@ -113,7 +120,8 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<url>jdbc:mysql://192.168.68.118:3306/rest_with_spring_boot_lrfs?useTimeZone=true&amp;serverTimeZone=UTC</url>
+					<url>
+						jdbc:mysql://192.168.68.118:3306/rest_with_spring_boot_lrfs?useTimeZone=true&amp;serverTimeZone=UTC</url>
 					<user>root</user>
 					<password>naoconto</password>
 				</configuration>

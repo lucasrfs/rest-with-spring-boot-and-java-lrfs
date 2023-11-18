@@ -5,17 +5,11 @@ import java.util.Objects;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.lang.Nullable;
 
 @JsonPropertyOrder({"id","address","first_name","last_name","gender"})
 public class BookVO extends RepresentationModel<BookVO> implements Serializable {
@@ -119,9 +113,10 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
 		result = prime * result + Objects.hash(author, editor, genre, isbn, key, title);
 		return result;
 	}
-
+		
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(@Nullable Object obj) {
+		if(obj == null) return false;
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
@@ -134,7 +129,5 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
 				&& Objects.equals(title, other.title);
 	}
 
-	
-	
 	
 }
