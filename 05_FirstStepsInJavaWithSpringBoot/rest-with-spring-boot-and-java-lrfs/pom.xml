@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>18</java.version>
 		<springdoc.version>2.0.2</springdoc.version>
+		<java-jwt.version>4.4.0</java-jwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,6 +29,15 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${java-jwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -102,6 +112,16 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 			<version>4.4.0</version><!--$NO-MVN-MAN-VER$-->
+			<exclusions><!-- https://www.baeldung.com/maven-version-collision -->
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy-xml</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
@@ -121,7 +141,7 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
 					<url>
-						jdbc:mysql://192.168.68.118:3306/rest_with_spring_boot_lrfs?useTimeZone=true&amp;serverTimeZone=UTC</url>
+						jdbc:mysql://192.168.68.121:3306/rest_with_spring_boot_lrfs?useTimeZone=true&amp;serverTimeZone=UTC</url>
 					<user>root</user>
 					<password>naoconto</password>
 				</configuration>

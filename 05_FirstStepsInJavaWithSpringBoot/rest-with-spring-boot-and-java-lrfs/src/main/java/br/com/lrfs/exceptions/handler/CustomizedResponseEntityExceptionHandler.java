@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 import br.com.lrfs.exceptions.ExceptionResponse;
+import br.com.lrfs.exceptions.InvalidJwtAuthenticationException;
 import br.com.lrfs.exceptions.RequiredObjectIsNullException;
 import br.com.lrfs.exceptions.ResourceNotFoundException;
 
@@ -33,6 +34,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request){
 		ExceptionResponse er = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity<>(er,HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(InvalidJwtAuthenticationException.class)
+	public final ResponseEntity<ExceptionResponse> handleInvalidLwtAuthenticationException(Exception ex, WebRequest request){
+		ExceptionResponse er = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
+		return new ResponseEntity<>(er,HttpStatus.FORBIDDEN);
 	}
 	
 	

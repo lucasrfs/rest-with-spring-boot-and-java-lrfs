@@ -9,13 +9,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.lifecycle.Startables;
 
-import java.util.*;;
+import java.util.*;
 
 @ContextConfiguration(initializers = { AbstractIntegrationTest.Initializer.class })
 public class AbstractIntegrationTest {
 
     public class Initializer implements ApplicationContextInitializer<org.springframework.context.ConfigurableApplicationContext> {
-        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.26")
+        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.32")
             ;
 
         private static void startContainers() {
